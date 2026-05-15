@@ -10,10 +10,18 @@ function addTask(task) {
 }
 
 function deleteTask(id) {
-  tasks = tasks.filter(task => task.id !== id);
+
+  if (!id) {
+    throw new Error("Task ID is required");
+  }
+
+  const updatedTasks = tasks.filter(
+    task => task.id !== id
+  );
+
+  tasks = updatedTasks;
   return tasks;
 }
-
 module.exports = {
   getTasks,
   addTask,

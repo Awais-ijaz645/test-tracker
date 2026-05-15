@@ -1,34 +1,41 @@
 const {
-  validateTask,
-  deleteTask,
-  toggleComplete,
-  filterTasks
-} = require("../public/script");
+  getTasks,
+  addTask,
+  deleteTask
+} = require("../server/tasks");
+describe("Task Functions Tests", () => {
+  test("addTask should add a new task", () => {
 
-describe("Task Functions", () => {
+    const task = {
+      id: 1,
+      text: "Complete assignment"
+    };
+    const result = addTask(task);
 
-  test("validateTask should return true for valid input", () => {
-    expect(validateTask("Study")).toBe(true);
+    expect(result.length).toBe(1);
   });
 
-  test("validateTask should return false for empty input", () => {
-    expect(validateTask("")).toBe(false);
-  });
+  test("getTasks should return all tasks", () => {
 
-  test("validateTask should return false for spaces only", () => {
-    expect(validateTask("   ")).toBe(false);
-  });
+    const tasks = getTasks();
 
-  test("deleteTask should be a function", () => {
-    expect(typeof deleteTask).toBe("function");
+    expect(Array.isArray(tasks)).toBe(true);
   });
+  test("deleteTask should remove a task", () => {
 
-  test("toggleComplete should be a function", () => {
-    expect(typeof toggleComplete).toBe("function");
+    deleteTask(1);
+    const tasks = getTasks();
+
+    expect(tasks.length).toBe(0);
   });
+  test("addTask should handle empty task object", () => {
+    const result = addTask({});
+    expect(result.length).toBeGreaterThanOrEqual(1);
+  });
+  test("deleteTask should handle invalid ID", () => {
 
-  test("filterTasks should be a function", () => {
-    expect(typeof filterTasks).toBe("function");
+    const result = deleteTask(999);
+    expect(Array.isArray(result)).toBe(true);
   });
 
 });
