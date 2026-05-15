@@ -1,0 +1,13 @@
+1. Generate a responsive HTML page for a task tracker app.
+
+2. Create modern CSS styling for a task tracker with responsive design.
+
+3. Generate JavaScript functions to add, delete, and complete tasks.
+
+4. Create a Node.js Express server for hosting the task tracker app.
+
+5. Generate Jest unit tests for task management functions.
+
+6. Create a GitHub Actions CI/CD workflow for testing and deployment.
+
+7. Refactor the toggleComplete function for better readability and performance.
